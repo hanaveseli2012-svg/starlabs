@@ -170,7 +170,7 @@ var G={
   if(this.l1.mz[2]&&this.l1.mz[2][1]){this.l1.mz[2][1].t=false}
   if(this.l1.mz[1]&&this.l1.mz[1][2]){this.l1.mz[1][2].l=false}
   var pd=0,at=0;
-  while(pd<10&&at<500){at++;var mx=Math.floor(Math.random()*this.l1.mgw),my=Math.floor(Math.random()*this.l1.mgh);var ix=mx*this.l1.mcs+this.l1.mcs/2,iy=my*this.l1.mcs+this.l1.mcs/2;var dx=ix-120,dy=iy-120;if(Math.sqrt(dx*dx+dy*dy)<80)continue;var tc=false;for(var j=0;j<this.l1.id.length;j++){var di=this.l1.id[j],ddx=ix-di.x,ddy=iy-di.y;if(Math.sqrt(ddx*ddx+ddy*ddy)<40)tc=true}if(!tc){this.l1.id.push({x:ix,y:iy,got:false,bo:Math.random()*Math.PI*2});pd++}}
+  while(pd<10&&at<500){at++;var mx=Math.floor(Math.random()*this.l1.mgw),my=Math.floor(Math.random()*this.l1.mgh);var ix=mx*this.l1.mcs+this.l1.mcs/2,iy=my*this.l1.mcs+this.l1.mcs/2;var dx=ix-120,dy=iy-120;if(Math.sqrt(dx*dx+dy*dy)<50)continue;var tc=false;for(var j=0;j<this.l1.id.length;j++){var di=this.l1.id[j],ddx=ix-di.x,ddy=iy-di.y;if(Math.sqrt(ddx*ddx+ddy*ddy)<15)tc=true}if(!tc){this.l1.id.push({x:ix,y:iy,got:false,bo:Math.random()*Math.PI*2});pd++}}
  },
  il3:function(){this.l3.gd=[];this.l3.sq=0;this.l3.tm=60;this.l3.st=0;this.l3.ov=false;this.l3.wn=false;this.l3.au=false;for(var y=0;y<this.l3.gh;y++){this.l3.gd[y]=[];for(var x=0;x<this.l3.gw;x++)this.l3.gd[y][x]={bug:false}}for(var i=0;i<4;i++){this.l3.gd[Math.floor(Math.random()*this.l3.gh)][Math.floor(Math.random()*this.l3.gw)].bug=true}},
  il5:function(){this.l5.ph='sum';this.l5.wr=0;this.l5.gs=[];this.l5.us={};this.l5.sh=0;this.mkb()},
