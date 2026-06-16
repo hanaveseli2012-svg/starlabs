@@ -111,7 +111,6 @@ var G={
  l4:{pl:[],scn:[],ix:0,cr:0,sel:-1,fb:0,ans:-1},
  l6:{bx:0,by:0,ri:0,tot:10,tm:0,tmr:2,sc:0,ph:'wait',wt:0,best:99},
  l7:{qs:[],qi:0,tot:8,ph:'flash',ft:0,fd:3,sel:-1,cr:0,ans:-1,fb:0},
- l8:{words:[],wi:0,tot:8,ph:'play',y:0,spd:40,typed:'',scr:0,cr:0},
  l5:{ph:'sum',wd:'STARLABS',ht:'The name of your company!',gs:[],wr:0,mx:6,bt:[],us:{},sh:0},
  ls:{},
 
@@ -157,7 +156,7 @@ var G={
  sl2:function(){this.l2.qs=sh(this.l2.pl.slice()).slice(0,8)},
  sl4:function(){this.l4.scn=sh(this.l4.pl.slice()).slice(0,6)},
 
- go:function(sc){this.tr=1;this.trT=sc;sp(W/2,H/2,25,K.gd);if(sc==='l1')this.il1();if(sc==='l2'){this.sl2();this.l2.qi=0;this.l2.sc=0;this.l2.tm=this.l2.tmq;this.l2.sel=-1;this.l2.fb=0;this.l2.ans=-1;this.l2.dn=false}if(sc==='l3')this.il3();if(sc==='l4'){this.sl4();this.l4.ix=0;this.l4.cr=0;this.l4.sel=-1;this.l4.fb=0}if(sc==='l6')this.il6();if(sc==='l7')this.il7();if(sc==='l8')this.il8();if(sc==='l5')this.il5()},
+ go:function(sc){this.tr=1;this.trT=sc;sp(W/2,H/2,25,K.gd);if(sc==='l1')this.il1();if(sc==='l2'){this.sl2();this.l2.qi=0;this.l2.sc=0;this.l2.tm=this.l2.tmq;this.l2.sel=-1;this.l2.fb=0;this.l2.ans=-1;this.l2.dn=false}if(sc==='l3')this.il3();if(sc==='l4'){this.sl4();this.l4.ix=0;this.l4.cr=0;this.l4.sel=-1;this.l4.fb=0}if(sc==='l6')this.il6();if(sc==='l7')this.il7();if(sc==='l5')this.il5()},
 
  il1:function(){
   this.l1.p={x:120,y:120,s:5,d:0,a:0};this.l1.id=[];this.l1.got=0;this.l1.t=0;
@@ -183,7 +182,7 @@ var G={
   for(var i=St.length-1;i>=0;i--){var s=St[i];s.y-=s.s*0.2;if(s.y<-5){s.y=H+5;s.x=Math.random()*W}}
   for(var i=Ps.length-1;i>=0;i--){var p=Ps[i];p.x+=p.vx;p.y+=p.vy;p.lf--;p.sz*=0.96;if(p.lf<=0)Ps.splice(i,1)}
   if(this.tr>0){this.tr-=dt*2.5;if(this.tr<=0){this.tr=0;this.sc=this.trT;this.trT=null;sp(W/2,H/2,20,K.gd)}return}
-  switch(this.sc){case'l1':this.u1(dt);break;case'l2':this.u2(dt);break;case'l3':this.u3(dt);break;case'l4':this.u4(dt);break;case'l6':this.u6(dt);break;case'l7':this.u7(dt);break;case'l8':this.u8(dt);break;case'l5':this.u5(dt);break}
+  switch(this.sc){case'l1':this.u1(dt);break;case'l2':this.u2(dt);break;case'l3':this.u3(dt);break;case'l4':this.u4(dt);break;case'l6':this.u6(dt);break;case'l7':this.u7(dt);break;case'l5':this.u5(dt);break}
  },
 
  u1:function(dt){
@@ -262,7 +261,7 @@ var G={
   if(this.l7.ph==='flash'){this.l7.ft+=dt;if(this.l7.ft>=this.l7.fd){this.l7.ph='answer';this.l7.sel=-1}}
   if(this.l7.ph==='feedback'){this.l7.fb-=dt;if(this.l7.fb<=0){this.l7.fb=0;this.l7.qi++;if(this.l7.qi>=this.l7.tot){this.l7.ph='done';this.fl7()}else{this.l7.ph='flash';this.l7.ft=0;this.l7.sel=-1}}}
  },
- fl7:function(){this.ls.l7={cr:this.l7.cr};this.xp+=this.l7.cr*25;this.scc+=this.l7.cr*200;Sd.lv();sp(W/2,H/2,45,K.gd);setTimeout(function(){G.go('l8')},1500)},
+ fl7:function(){this.ls.l7={cr:this.l7.cr};this.xp+=this.l7.cr*25;this.scc+=this.l7.cr*200;Sd.lv();sp(W/2,H/2,45,K.gd);this.il5();setTimeout(function(){G.go('l5')},1500)},
  r7:function(){
   this.rH();Pn(30,58,1140,600);
   GT('🧠 Level 7: Memory Flash',600,90,26,K.am);
@@ -290,7 +289,7 @@ var G={
   }
  },
 
- },\n },\n\n // LEVEL 8: Code Drop (typing game)\n il8:function(){\n  this.l8.words=sh(['DEBUG','SERVER','CLOUD','PYTHON','COMMIT','DEPLOY','CODING','DESIGN','LAUNCH','BUILD','SCRIPT','MERGE']).slice(0,this.l8.tot);\n  this.l8.wi=0;this.l8.scr=0;this.l8.cr=0;this.l8.ph='play';this.l8.y=80;this.l8.typed='';\n },\n u8:function(dt){\n  if(this.l8.ph==='done')return;\n  if(this.l8.ph==='play'){\n   this.l8.y+=this.l8.spd*dt;\n   if(this.l8.y>550){this.l8.y=80;this.l8.wi++;this.l8.typed='';Sd.bz();if(this.l8.wi>=this.l8.tot){this.l8.ph='done';this.fl8()}}\n  }\n  if(this.l8.ph==='feedback'){this.l8.y+=dt*100;if(this.l8.y>550){this.l8.y=80;this.l8.wi++;this.l8.typed='';this.l8.ph='play';if(this.l8.wi>=this.l8.tot){this.l8.ph='done';this.fl8()}}}\n },\n fl8:function(){this.ls.l8={cr:this.l8.cr};this.xp+=this.l8.cr*20;this.scc+=this.l8.cr*150;Sd.lv();sp(W/2,H/2,45,K.gd);this.il5();setTimeout(function(){G.go('l5')},1500)},\n r8:function(){\n  this.rH();Pn(30,58,1140,600);\n  GT('⌨️ Level 8: Code Drop',600,90,26,K.gn);\n  Tx('Type the falling word and press ENTER!',600,125,15,K.t3);\n  Tx('Word '+(this.l8.wi+1)+'/'+this.l8.tot+'  |  Correct: '+this.l8.cr,600,155,16,K.tx);\n  if(this.l8.ph==='done'){GT('Code Drop Complete!',600,350,32,K.gn);Tx('Correct: '+this.l8.cr+'/'+this.l8.tot,600,400,20,K.tx);return}\n  // Falling word\n  if(this.l8.words[this.l8.wi]){\n   var wy=this.l8.y,wd=this.l8.words[this.l8.wi];\n   var fl=this.l8.y>450?'rgba(220,38,38,0.3)':'rgba(239,191,4,0.3)';\n   X.fillStyle=fl;X.strokeStyle=K.gd;X.lineWidth=2;\n   X.beginPath();X.roundRect(450,wy-20,300,50,10);X.fill();X.stroke();\n   GT(wd,600,wy+15,30,K.gd);\n  }\n  // Typed text display\n  X.fillStyle='#1a1a1a';X.strokeStyle=K.gd;X.lineWidth=2;X.beginPath();X.roundRect(400,580,400,44,8);X.fill();X.stroke();\n  Tx(this.l8.typed+(Math.floor(Date.now()/400)%2===0?'|':''),600,610,22,K.gL);\n  Tx('Type the word above and press ENTER',600,650,13,K.t3);\n  // Key handling\n  if(this.l8.ph==='play'){\n   for(var k in K2){\n    if(K2[k]&&k.length===1&&this.l8.typed.length<15){this.l8.typed+=k.toUpperCase();K2[k]=false;Sd.ty()}\n    if(K2[k]&&k==='backspace'&&this.l8.typed.length>0){this.l8.typed=this.l8.typed.slice(0,-1);K2[k]=false}\n    if(K2[k]&&k==='enter'&&this.l8.typed.length>0){\n     K2[k]=false;\n     if(this.l8.typed===this.l8.words[this.l8.wi]){this.l8.cr++;Sd.ok();sp(600,this.l8.y,20,K.gn);this.l8.ph='feedback';this.l8.y+=20}\n     else{Sd.er();this.l8.typed='';this.l8.y+=10}\n    }\n   }\n  }\n },\n\n u5:function(dt){if(this.l5.ph==='hang'&&this.l5.sh>0)this.l5.sh-=dt*10},
+ u5:function(dt){if(this.l5.ph==='hang'&&this.l5.sh>0)this.l5.sh-=dt*10},
 
  draw:function(){
   X.fillStyle=K.bg;X.fillRect(0,0,W,H);
@@ -300,7 +299,7 @@ var G={
   for(var i=0;i<Ps.length;i++){var p=Ps[i];var a=p.lf/p.ml;X.fillStyle=p.c.replace('1)',a+')').replace('rgb','rgba');X.beginPath();X.arc(p.x,p.y,p.sz,0,Math.PI*2);X.fill()}
  },
  ds:function(){
-  switch(this.sc){case'name':this.rn();break;case'menu':this.rm();break;case'l1':this.r1();break;case'l2':this.r2();break;case'l3':this.r3();break;case'l4':this.r4();break;case'l6':this.r6();break;case'l7':this.r7();break;case'l8':this.r8();break;case'l5':this.r5();break}
+  switch(this.sc){case'name':this.rn();break;case'menu':this.rm();break;case'l1':this.r1();break;case'l2':this.r2();break;case'l3':this.r3();break;case'l4':this.r4();break;case'l6':this.r6();break;case'l7':this.r7();break;case'l5':this.r5();break}
  },
 
  rn:function(){
