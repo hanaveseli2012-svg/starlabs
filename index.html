@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#3e2723;font-family:'Segoe UI',system-ui,serif;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;user-select:none}
-canvas{display:block;border-radius:8px;box-shadow:0 0 60px rgba(184,134,11,0.3),0 0 120px rgba(139,69,19,0.2)}
+canvas{display:block;border-radius:8px;box-shadow:0 0 60px rgba(184,134,11,0.3),0 0 120px rgba(139,69,19,0.2);image-rendering:crisp-edges}
 #fb{display:none;color:#f5f0e8;font-family:'Segoe UI',system-ui,serif;text-align:center;padding:40px}
 #fb h1{color:#daa520;font-size:48px;margin-bottom:10px}
 #fb p{font-size:18px;color:#c5a55a}
@@ -79,7 +79,7 @@ function sLB(e){try{var lb=gLB();lb.push(e);lb.sort(function(a,b){return b.score
 
 // Draw helpers
 function Tx(t,x,y,s,c,a,b){X.fillStyle=c||K.tx;X.textAlign=a||'center';X.font=(b!==false?'bold ':'')+s+'px "Segoe UI",system-ui,serif';X.fillText(t,x,y)}
-function GT(t,x,y,s,c,a){X.save();X.shadowColor=c||K.gd;X.shadowBlur=s*0.7;X.fillStyle=c||K.gd;X.textAlign=a||'center';X.font='bold '+s+'px "Segoe UI",system-ui,serif';X.fillText(t,x,y);X.shadowColor=c||K.gd;X.shadowBlur=s*0.3;X.fillText(t,x,y);X.shadowBlur=0;X.restore()}
+function GT(t,x,y,s,c,a){X.save();c=c||K.gd;X.shadowColor=c;X.shadowBlur=s*0.9;X.fillStyle=c;X.textAlign=a||'center';X.font='bold '+s+'px "Segoe UI",system-ui,serif';X.fillText(t,x,y);X.shadowColor='#fff';X.shadowBlur=s*0.15;X.fillText(t,x,y);X.shadowColor=c;X.shadowBlur=s*0.4;X.fillText(t,x,y);X.shadowBlur=0;X.restore()}
 
 function Pn(x,y,w,h){X.fillStyle=K.pn;X.strokeStyle=K.pnB;X.lineWidth=2.5;X.beginPath();X.roundRect(x,y,w,h,6);X.fill();X.stroke();X.strokeStyle=K.gd;X.lineWidth=1;X.globalAlpha=0.3;X.beginPath();X.roundRect(x+4,y+4,w-8,h-8,3);X.stroke();X.globalAlpha=1;var dd=10;X.fillStyle=K.gd;X.globalAlpha=0.4;X.beginPath();X.arc(x+dd,y+dd,3,0,Math.PI*2);X.fill();X.beginPath();X.arc(x+w-dd,y+dd,3,0,Math.PI*2);X.fill();X.beginPath();X.arc(x+dd,y+h-dd,3,0,Math.PI*2);X.fill();X.beginPath();X.arc(x+w-dd,y+h-dd,3,0,Math.PI*2);X.fill();X.globalAlpha=1}
 function Bn(x,y,w,h,t,c,hv){c=c||K.gd;X.fillStyle=hv?'rgba(184,134,11,0.2)':'rgba(139,105,20,0.06)';X.strokeStyle=hv?c:'rgba(139,105,20,0.4)';X.lineWidth=hv?2.5:1.5;X.beginPath();X.roundRect(x,y,w,h,8);X.fill();X.stroke();if(hv){X.shadowColor=K.gl;X.shadowBlur=12;X.fillStyle='rgba(184,134,11,0.2)';X.beginPath();X.roundRect(x,y,w,h,8);X.fill();X.shadowBlur=0}X.fillStyle=hv?'#fff':c;Tx(t,x+w/2,y+h/2+7,hv?17:16,X.fillStyle,'center',true)}
@@ -325,7 +325,7 @@ var G={
   Tx('WASD/Arrow Keys  |  Click to interact  |  7 levels',600,675,13,K.t3);
  },
 
- rH:function(){X.fillStyle='rgba(250,246,240,0.95)';X.fillRect(0,0,W,48);X.strokeStyle=K.pnB;X.beginPath();X.moveTo(0,48);X.lineTo(W,48);X.stroke();var ts=['Junior Developer','Developer','Senior Developer','Tech Lead','Lead Innovator'];Tx('Score: '+this.scc,24,32,16,K.gD,'left');GT(ts[Math.min(this.lv-1,4)],600,32,17,K.gD);Tx('Lv.'+this.lv,1100,22,16,K.gn,'right');Pr(1100,34,80,8,Math.min(1,(this.xp%500)/500),K.gd);X.fillStyle=K.t3;X.font='bold 11px "Segoe UI",system-ui,serif';X.textAlign='right';X.fillText('XP '+(this.xp%500)+'/500',1170,24)},
+ rH:function(){X.fillStyle='rgba(250,246,240,0.75)';X.fillRect(0,0,W,48);X.strokeStyle=K.pnB;X.beginPath();X.moveTo(0,48);X.lineTo(W,48);X.stroke();var ts=['Junior Developer','Developer','Senior Developer','Tech Lead','Lead Innovator'];Tx('Score: '+this.scc,24,32,16,K.gD,'left');GT(ts[Math.min(this.lv-1,4)],600,32,17,K.gD);Tx('Lv.'+this.lv,1100,22,16,K.gn,'right');Pr(1100,34,80,8,Math.min(1,(this.xp%500)/500),K.gd);X.fillStyle=K.t3;X.font='bold 11px "Segoe UI",system-ui,serif';X.textAlign='right';X.fillText('XP '+(this.xp%500)+'/500',1170,24)},
  rFt:function(t){Tx(t,600,680,13,K.t3)},
 
  r1:function(){
@@ -335,7 +335,7 @@ var G={
   X.strokeStyle=K.gD;X.lineWidth=4;X.strokeRect(1,1,this.l1.mw-2,this.l1.mh-2);
   for(var i=0;i<this.l1.id.length;i++){var id=this.l1.id[i];if(!id.got){var bob=Math.sin(this.fc*0.05+id.bo)*4;this.dbl(id.x,id.y+bob)}}
   this.dav(this.l1.p.x,this.l1.p.y,this.l1.p.d,this.l1.p.a);
-  X.restore();this.rH();Pn(20,58,290,68);Tx('Level 1: Maze Hunt',38,86,17,K.gD,'left');Tx(this.l1.got+'/'+this.l1.gl+' lightbulbs',38,112,15,K.tx,'left');Pr(190,100,110,8,this.l1.got/this.l1.gl,K.gd);this.rFt('Navigate the maze with WASD - find all the lightbulbs!');
+  X.restore();this.rH();Pn(20,58,290,68,'rgba(250,246,240,0.7)','rgba(184,134,11,0.3)');Tx('Level 1: Maze Hunt',38,86,17,K.gD,'left');Tx(this.l1.got+'/'+this.l1.gl+' lightbulbs',38,112,15,K.tx,'left');Pr(190,100,110,8,this.l1.got/this.l1.gl,K.gd);this.rFt('Navigate the maze with WASD - find all the lightbulbs!');
  },
  dbl:function(x,y){X.save();X.translate(x,y);var gg=0.4+Math.sin(this.fc*0.08)*0.2;X.fillStyle='rgba(218,165,32,'+gg+')';X.beginPath();X.arc(0,0,22,0,Math.PI*2);X.fill();X.fillStyle='#fffde7';X.strokeStyle=K.gd;X.lineWidth=2.5;X.beginPath();X.arc(0,-5,14,Math.PI*0.2,Math.PI*0.8);X.fill();X.stroke();X.beginPath();X.arc(0,-5,14,Math.PI*0.8,Math.PI*0.2);X.fill();X.stroke();X.fillStyle='#8d6e63';X.fillRect(-6,2,12,10);X.restore()},
  dav:function(x,y,dir,anim){X.save();X.translate(x,y);var b=Math.abs(Math.sin(anim))*2;X.fillStyle='rgba(139,105,20,0.15)';X.beginPath();X.ellipse(0,18,13,5,0,0,Math.PI*2);X.fill();X.fillStyle=K.gD;X.fillRect(-11,10+b,22,5);X.fillStyle=K.am;X.fillRect(-5,-2+b,10,12);X.fillStyle='#5d4037';X.fillRect(-16,-28+b,32,28);X.fillStyle='#3e2723';X.fillRect(-13,-25+b,26,22);var sg=X.createLinearGradient(0,-25+b,0,-3+b);sg.addColorStop(0,'rgba(218,165,32,0.5)');sg.addColorStop(1,'rgba(218,165,32,0.1)');X.fillStyle=sg;X.fillRect(-13,-25+b,26,22);X.fillStyle='#fff';X.beginPath();X.arc(dir>=0?2.5:-2.5,-15+b,3,0,Math.PI*2);X.fill();X.beginPath();X.arc(dir>=0?-4.5:4.5,-15+b,3,0,Math.PI*2);X.fill();X.fillStyle='#3e2723';X.beginPath();X.arc(dir>=0?3:-3,-15+b,1.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(dir>=0?-4:4,-15+b,1.5,0,Math.PI*2);X.fill();X.strokeStyle=K.gn;X.lineWidth=1.5;X.beginPath();X.arc(0,-10+b,4.5,0.1*Math.PI,0.9*Math.PI);X.stroke();X.fillStyle=K.am;X.fillRect(-9,16+b,18,7);X.fillStyle=K.gD;X.beginPath();X.arc(-10,20+b,3.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(10,20+b,3.5,0,Math.PI*2);X.fill();X.restore()},
