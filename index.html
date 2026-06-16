@@ -188,11 +188,12 @@ var G={
   if(K2['w']||K2['arrowup'])my=-1;if(K2['s']||K2['arrowdown'])my=1;if(K2['a']||K2['arrowleft'])mx=-1;if(K2['d']||K2['arrowright'])mx=1;
   if(mx||my){var l=Math.sqrt(mx*mx+my*my);mx/=l;my/=l;p.d=mx>0?1:mx<0?-1:p.d;p.a+=dt*10}
   var nx=p.x+mx*p.s,ny=p.y+my*p.s,cm=true;
-  var gx=Math.floor(nx/mc),gy=Math.floor(ny/mc);
-  if(mx>0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][gx]&&this.l1.mz[Math.floor(p.y/mc)][gx].l)cm=false;
-  if(mx<0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][gx]&&this.l1.mz[Math.floor(p.y/mc)][gx].r)cm=false;
-  if(my>0&&this.l1.mz[gy]&&this.l1.mz[gy][Math.floor(p.x/mc)]&&this.l1.mz[gy][Math.floor(p.x/mc)].t)cm=false;
-  if(my<0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)].b)cm=false;
+  var cx=Math.floor(p.x/mc),cy=Math.floor(p.y/mc);
+  var dx=Math.floor(nx/mc),dy=Math.floor(ny/mc);
+  if(dx>cx&&this.l1.mz[cy]&&this.l1.mz[cy][cx]&&this.l1.mz[cy][cx].r)cm=false;
+  if(dx<cx&&this.l1.mz[cy]&&this.l1.mz[cy][cx]&&this.l1.mz[cy][cx].l)cm=false;
+  if(dy>cy&&this.l1.mz[cy]&&this.l1.mz[cy][cx]&&this.l1.mz[cy][cx].b)cm=false;
+  if(dy<cy&&this.l1.mz[cy]&&this.l1.mz[cy][cx]&&this.l1.mz[cy][cx].t)cm=false;
   if(cm){p.x=nx;p.y=ny}
   p.x=Math.max(15,Math.min(this.l1.mw-15,p.x));p.y=Math.max(15,Math.min(this.l1.mh-15,p.y));
   this.l1.cm.x+=(p.x-W/2-this.l1.cm.x)*0.1;this.l1.cm.y+=(p.y-H/2-this.l1.cm.y)*0.1;
