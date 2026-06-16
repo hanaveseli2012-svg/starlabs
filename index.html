@@ -303,7 +303,10 @@ var G={
  },
 
  rn:function(){
-  Pn(250,100,700,500);GT('S T A R L A B S',600,185,58,K.gD);GT('MISSION INNOVATION',600,255,26,K.gd);
+  Pn(250,100,700,500);
+  // Computer avatar on the name screen
+  this.drawAvStatic(450,280);
+  GT('S T A R L A B S',600,185,58,K.gD);GT('MISSION INNOVATION',600,255,26,K.gd);
   Tx('Enter your name to begin',600,325,17,K.t2);var nm=this.pn,nbx=350,nby=355,nbw=500,nbh=56;
   X.fillStyle='#faf6f0';X.strokeStyle=K.gd;X.lineWidth=2.5;X.shadowColor=K.gl;X.shadowBlur=8;X.beginPath();X.roundRect(nbx,nby,nbw,nbh,6);X.fill();X.stroke();X.shadowBlur=0;
   Tx(nm+(Math.floor(Date.now()/500)%2===0?'|':''),600,nby+38,24,K.gD);Tx('Type name and press ENTER',600,445,15,K.t3);Tx('From Junior Developer to Lead Innovator',600,470,14,K.t3);
@@ -336,6 +339,22 @@ var G={
  },
  dbl:function(x,y){X.save();X.translate(x,y);var gg=0.4+Math.sin(this.fc*0.08)*0.2;X.fillStyle='rgba(218,165,32,'+gg+')';X.beginPath();X.arc(0,0,22,0,Math.PI*2);X.fill();X.fillStyle='#fffde7';X.strokeStyle=K.gd;X.lineWidth=2.5;X.beginPath();X.arc(0,-5,14,Math.PI*0.2,Math.PI*0.8);X.fill();X.stroke();X.beginPath();X.arc(0,-5,14,Math.PI*0.8,Math.PI*0.2);X.fill();X.stroke();X.fillStyle='#8d6e63';X.fillRect(-6,2,12,10);X.restore()},
  dav:function(x,y,dir,anim){X.save();X.translate(x,y);var b=Math.abs(Math.sin(anim))*2;X.fillStyle='rgba(139,105,20,0.15)';X.beginPath();X.ellipse(0,18,13,5,0,0,Math.PI*2);X.fill();X.fillStyle=K.gD;X.fillRect(-11,10+b,22,5);X.fillStyle=K.am;X.fillRect(-5,-2+b,10,12);X.fillStyle='#5d4037';X.fillRect(-16,-28+b,32,28);X.fillStyle='#3e2723';X.fillRect(-13,-25+b,26,22);var sg=X.createLinearGradient(0,-25+b,0,-3+b);sg.addColorStop(0,'rgba(218,165,32,0.5)');sg.addColorStop(1,'rgba(218,165,32,0.1)');X.fillStyle=sg;X.fillRect(-13,-25+b,26,22);X.fillStyle='#fff';X.beginPath();X.arc(dir>=0?2.5:-2.5,-15+b,3,0,Math.PI*2);X.fill();X.beginPath();X.arc(dir>=0?-4.5:4.5,-15+b,3,0,Math.PI*2);X.fill();X.fillStyle='#3e2723';X.beginPath();X.arc(dir>=0?3:-3,-15+b,1.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(dir>=0?-4:4,-15+b,1.5,0,Math.PI*2);X.fill();X.strokeStyle=K.gn;X.lineWidth=1.5;X.beginPath();X.arc(0,-10+b,4.5,0.1*Math.PI,0.9*Math.PI);X.stroke();X.fillStyle=K.am;X.fillRect(-9,16+b,18,7);X.fillStyle=K.gD;X.beginPath();X.arc(-10,20+b,3.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(10,20+b,3.5,0,Math.PI*2);X.fill();X.restore()},
+ // Static avatar for name screen (always faces right, gentle bob)
+ drawAvStatic:function(x,y){
+  var b=Math.sin(this.fc*0.03)*3;
+  X.save();X.translate(x,y);
+  X.fillStyle='rgba(139,105,20,0.2)';X.beginPath();X.ellipse(0,20,16,6,0,0,Math.PI*2);X.fill();
+  X.fillStyle=K.gD;X.fillRect(-13,12+b,26,6);X.fillStyle=K.am;X.fillRect(-6,0+b,12,16);
+  X.fillStyle='#5d4037';X.fillRect(-20,-32+b,40,32);X.fillStyle='#3e2723';X.fillRect(-16,-29+b,32,26);
+  var sg=X.createLinearGradient(0,-29+b,0,-3+b);sg.addColorStop(0,'rgba(218,165,32,0.6)');sg.addColorStop(1,'rgba(218,165,32,0.15)');
+  X.fillStyle=sg;X.fillRect(-16,-29+b,32,26);
+  X.fillStyle='#fff';X.beginPath();X.arc(3,-18+b,4,0,Math.PI*2);X.fill();X.beginPath();X.arc(-5,-18+b,4,0,Math.PI*2);X.fill();
+  X.fillStyle='#3e2723';X.beginPath();X.arc(3.5,-18+b,2,0,Math.PI*2);X.fill();X.beginPath();X.arc(-4.5,-18+b,2,0,Math.PI*2);X.fill();
+  X.strokeStyle=K.gn;X.lineWidth=2;X.beginPath();X.arc(0,-12+b,5.5,0.1*Math.PI,0.9*Math.PI);X.stroke();
+  X.fillStyle=K.am;X.fillRect(-11,20+b,22,8);
+  X.fillStyle=K.gD;X.beginPath();X.arc(-13,26+b,4.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(13,26+b,4.5,0,Math.PI*2);X.fill();
+  X.restore();
+ },
 
  r2:function(){
   this.rH();Pn(30,58,1140,590);
