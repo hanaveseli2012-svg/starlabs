@@ -12,9 +12,19 @@ canvas{display:block;border-radius:8px;box-shadow:0 0 60px rgba(184,134,11,0.3),
 </head>
 <body>
 <canvas id="game"></canvas>
+<div id="fallback" style="display:none;color:#3e2723;font-family:'Segoe UI',system-ui,serif;text-align:center;padding:40px">
+<h1 style="color:#8b6914;font-size:48px">STARLABS</h1>
+<p style="font-size:18px">Mission Innovation</p>
+<p style="margin-top:30px;color:#8d6e63">The game failed to load.<br>Try refreshing the page or using a different browser.</p>
+</div>
+<script>
+// Show something immediately
+(function(){var cc=document.getElementById('game');if(cc){var cx=cc.getContext('2d');cx.fillStyle='#f5f0e8';cx.fillRect(0,0,1200,700);cx.fillStyle='#8b6914';cx.font='bold 48px "Segoe UI",system-ui,serif';cx.textAlign='center';cx.fillText('STARLABS',600,340);cx.font='bold 20px "Segoe UI",system-ui,serif';cx.fillText('Loading...',600,390)}})();
+</script>
 <script>
 (function(){
 "use strict";
+try{
 var c=document.getElementById('game'),x=c.getContext('2d'),W=1200,H=700;
 c.width=W;c.height=H;
 // roundRect polyfill for older browsers
@@ -431,6 +441,7 @@ function loop(tm){var dt=Math.min(0.1,(tm-lt)/1000);lt=tm;G.up(dt);G.draw();M.cd
 c.addEventListener('click',function(){S.init()},{once:true});
 c.addEventListener('keydown',function(){S.init()},{once:true});
 requestAnimationFrame(loop);
+}catch(e){document.getElementById('fallback').style.display='block';document.getElementById('game').style.display='none'}
 })();
 </script>
 </body>
