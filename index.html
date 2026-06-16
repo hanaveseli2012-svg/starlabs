@@ -349,14 +349,47 @@ var G={
  },
 
  rn:function(){
+  // Extra background sparkles for name screen
+  var tt=this.fc*0.02;
+  for(var i=0;i<40;i++){
+   var sx=Math.sin(tt+i*0.7)*500+600,sy=Math.cos(tt+i*0.9)*350+350;
+   var sz=1+Math.abs(Math.sin(tt*2+i))*2.5;
+   var cl='rgba(239,191,4,'+(0.15+Math.abs(Math.sin(tt+i))*0.2)+')';
+   if(i%5===0)cl='rgba(255,255,255,'+(0.1+Math.abs(Math.cos(tt+i))*0.15)+')';
+   X.fillStyle=cl;X.beginPath();X.arc(sx,sy,sz,0,Math.PI*2);X.fill();
+  }
+  // Shooting stars
+  for(var i=0;i<3;i++){
+   var stx=(this.fc*2+i*300)%1400-100,sty=100+i*200;
+   if(stx>0&&stx<W){X.strokeStyle='rgba(255,255,255,0.3)';X.lineWidth=1.5;X.beginPath();X.moveTo(stx,sty);X.lineTo(stx+40,sty-20);X.stroke();X.fillStyle='rgba(255,255,255,0.6)';X.beginPath();X.arc(stx,sty,2,0,Math.PI*2);X.fill()}
+  }
+  // Main panel
   Pn(250,100,700,500);
-  // Computer avatar on the left side
+  // Radial glow behind avatar
+  var rg=X.createRadialGradient(380,370,20,380,370,150);
+  rg.addColorStop(0,'rgba(239,191,4,0.3)');rg.addColorStop(1,'rgba(239,191,4,0)');
+  X.fillStyle=rg;X.beginPath();X.arc(380,370,150,0,Math.PI*2);X.fill();
+  // Computer avatar
   this.drawAvStatic(380,370);
-  // Text on the right side
-  GT('S T A R L A B S',720,200,54,K.gD);GT('MISSION INNOVATION',720,265,24,K.gd);
-  Tx('Enter your name:',720,325,17,K.t2);var nm=this.pn,nbx=530,nby=355,nbw=380,nbh=56;
-  X.fillStyle='#faf6f0';X.strokeStyle=K.gd;X.lineWidth=2.5;X.shadowColor=K.gl;X.shadowBlur=8;X.beginPath();X.roundRect(nbx,nby,nbw,nbh,6);X.fill();X.stroke();X.shadowBlur=0;
-  Tx(nm+(Math.floor(Date.now()/500)%2===0?'|':''),720,nby+38,24,K.gD);Tx('Type name and press ENTER',720,445,15,K.t3);Tx('From Junior Developer to Lead Innovator',720,470,14,K.t3);
+  // Orbiting sparkles around avatar
+  for(var i=0;i<8;i++){
+   var ang=tt*3+i*Math.PI/4,ox=380+Math.cos(ang)*55,oy=370+Math.sin(ang)*45;
+   X.fillStyle='rgba(255,255,255,'+(0.4+Math.sin(tt*5+i)*0.3)+')';X.beginPath();X.arc(ox,oy,1.5,0,Math.PI*2);X.fill();
+  }
+  // Title with pulse
+  var pulse=1+Math.sin(this.fc*0.05)*0.05;
+  GT('S T A R L A B S',720,195,54*pulse,K.gL);GT('MISSION INNOVATION',720,260,22*pulse,K.gd);
+  // Gold divider line
+  X.strokeStyle=K.gd;X.lineWidth=1;X.globalAlpha=0.4;X.beginPath();X.moveTo(530,290);X.lineTo(910,290);X.stroke();X.globalAlpha=1;
+  // Name prompt
+  Tx('Enter your name:',720,325,18,K.t2);var nm=this.pn,nbx=530,nby=355,nbw=380,nbh=58;
+  // Animated glow around input
+  var ig=Math.sin(this.fc*0.08)*0.4+0.6;
+  X.fillStyle='#faf6f0';X.strokeStyle=K.gd;X.lineWidth=2.5;X.shadowColor='rgba(239,191,4,'+ig+')';X.shadowBlur=15;X.beginPath();X.roundRect(nbx,nby,nbw,nbh,8);X.fill();X.stroke();X.shadowBlur=0;
+  Tx(nm+(Math.floor(Date.now()/500)%2===0?'|':''),720,nby+40,26,K.gL);
+  Tx('Type name and press ENTER',720,445,15,K.t3);Tx('From Junior Developer to Lead Innovator',720,470,14,K.t3);
+  // Bottom sparkle bar
+  for(var i=0;i<20;i++){X.fillStyle='rgba(239,191,4,'+(0.2+Math.sin(tt*3+i)*0.15)+')';X.beginPath();X.arc(350+i*25,510,2,0,Math.PI*2);X.fill()}
   for(var k in K2){if(K2[k]&&k.length===1&&nm.length<20){this.pn+=k.toUpperCase();K2[k]=false;Sd.ty()}if(K2[k]&&k==='backspace'&&nm.length>0){this.pn=this.pn.slice(0,-1);K2[k]=false}}
   if(K2['enter']&&nm.length>0){K2['enter']=false;Sd.cl();this.sc='menu';sp(W/2,H/2,35,K.gd)}
  },
