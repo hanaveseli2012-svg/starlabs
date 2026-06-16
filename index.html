@@ -190,7 +190,7 @@ var G={
   var nx=p.x+mx*p.s,ny=p.y+my*p.s,cm=true;
   var gx=Math.floor(nx/mc),gy=Math.floor(ny/mc);
   if(mx>0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][gx]&&this.l1.mz[Math.floor(p.y/mc)][gx].l)cm=false;
-  if(mx<0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)].r)cm=false;
+  if(mx<0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][gx]&&this.l1.mz[Math.floor(p.y/mc)][gx].r)cm=false;
   if(my>0&&this.l1.mz[gy]&&this.l1.mz[gy][Math.floor(p.x/mc)]&&this.l1.mz[gy][Math.floor(p.x/mc)].t)cm=false;
   if(my<0&&this.l1.mz[Math.floor(p.y/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)]&&this.l1.mz[Math.floor(p.y/mc)][Math.floor(p.x/mc)].b)cm=false;
   if(cm){p.x=nx;p.y=ny}
