@@ -17,6 +17,8 @@ canvas{display:block;border-radius:8px;box-shadow:0 0 60px rgba(184,134,11,0.3),
 "use strict";
 var c=document.getElementById('game'),x=c.getContext('2d'),W=1200,H=700;
 c.width=W;c.height=H;
+// roundRect polyfill for older browsers
+if(!x.roundRect){x.roundRect=function(x2,y2,w2,h2,r){if(typeof r==='number')r={tl:r,tr:r,br:r,bl:r};x.beginPath();x.moveTo(x2+r.tl,y2);x.lineTo(x2+w2-r.tr,y2);x.quadraticCurveTo(x2+w2,y2,x2+w2,y2+r.tr);x.lineTo(x2+w2,y2+h2-r.br);x.quadraticCurveTo(x2+w2,y2+h2,x2+w2-r.br,y2+h2);x.lineTo(x2+r.bl,y2+h2);x.quadraticCurveTo(x2,y2+h2,x2,y2+h2-r.bl);x.lineTo(x2,y2+r.tl);x.quadraticCurveTo(x2,y2,x2+r.tl,y2);x.closePath()}}
 function rs(){var s=Math.min(window.innerWidth/W,window.innerHeight/H);c.style.width=(W*s)+'px';c.style.height=(H*s)+'px'}
 rs();window.addEventListener('resize',rs);
 
