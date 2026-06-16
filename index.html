@@ -304,12 +304,13 @@ var G={
 
  rn:function(){
   Pn(250,100,700,500);
-  // Computer avatar on the name screen
-  this.drawAvStatic(450,280);
-  GT('S T A R L A B S',600,185,58,K.gD);GT('MISSION INNOVATION',600,255,26,K.gd);
-  Tx('Enter your name to begin',600,325,17,K.t2);var nm=this.pn,nbx=350,nby=355,nbw=500,nbh=56;
+  // Computer avatar on the left side
+  this.drawAvStatic(380,370);
+  // Text on the right side
+  GT('S T A R L A B S',720,200,54,K.gD);GT('MISSION INNOVATION',720,265,24,K.gd);
+  Tx('Enter your name:',720,325,17,K.t2);var nm=this.pn,nbx=530,nby=355,nbw=380,nbh=56;
   X.fillStyle='#faf6f0';X.strokeStyle=K.gd;X.lineWidth=2.5;X.shadowColor=K.gl;X.shadowBlur=8;X.beginPath();X.roundRect(nbx,nby,nbw,nbh,6);X.fill();X.stroke();X.shadowBlur=0;
-  Tx(nm+(Math.floor(Date.now()/500)%2===0?'|':''),600,nby+38,24,K.gD);Tx('Type name and press ENTER',600,445,15,K.t3);Tx('From Junior Developer to Lead Innovator',600,470,14,K.t3);
+  Tx(nm+(Math.floor(Date.now()/500)%2===0?'|':''),720,nby+38,24,K.gD);Tx('Type name and press ENTER',720,445,15,K.t3);Tx('From Junior Developer to Lead Innovator',720,470,14,K.t3);
   for(var k in K2){if(K2[k]&&k.length===1&&nm.length<20){this.pn+=k.toUpperCase();K2[k]=false;Sd.ty()}if(K2[k]&&k==='backspace'&&nm.length>0){this.pn=this.pn.slice(0,-1);K2[k]=false}}
   if(K2['enter']&&nm.length>0){K2['enter']=false;Sd.cl();this.sc='menu';sp(W/2,H/2,35,K.gd)}
  },
@@ -343,16 +344,16 @@ var G={
  drawAvStatic:function(x,y){
   var b=Math.sin(this.fc*0.03)*3;
   X.save();X.translate(x,y);
-  X.fillStyle='rgba(139,105,20,0.2)';X.beginPath();X.ellipse(0,20,16,6,0,0,Math.PI*2);X.fill();
-  X.fillStyle=K.gD;X.fillRect(-13,12+b,26,6);X.fillStyle=K.am;X.fillRect(-6,0+b,12,16);
-  X.fillStyle='#5d4037';X.fillRect(-20,-32+b,40,32);X.fillStyle='#3e2723';X.fillRect(-16,-29+b,32,26);
-  var sg=X.createLinearGradient(0,-29+b,0,-3+b);sg.addColorStop(0,'rgba(218,165,32,0.6)');sg.addColorStop(1,'rgba(218,165,32,0.15)');
-  X.fillStyle=sg;X.fillRect(-16,-29+b,32,26);
-  X.fillStyle='#fff';X.beginPath();X.arc(3,-18+b,4,0,Math.PI*2);X.fill();X.beginPath();X.arc(-5,-18+b,4,0,Math.PI*2);X.fill();
-  X.fillStyle='#3e2723';X.beginPath();X.arc(3.5,-18+b,2,0,Math.PI*2);X.fill();X.beginPath();X.arc(-4.5,-18+b,2,0,Math.PI*2);X.fill();
-  X.strokeStyle=K.gn;X.lineWidth=2;X.beginPath();X.arc(0,-12+b,5.5,0.1*Math.PI,0.9*Math.PI);X.stroke();
-  X.fillStyle=K.am;X.fillRect(-11,20+b,22,8);
-  X.fillStyle=K.gD;X.beginPath();X.arc(-13,26+b,4.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(13,26+b,4.5,0,Math.PI*2);X.fill();
+  X.fillStyle='rgba(139,105,20,0.25)';X.beginPath();X.ellipse(0,24,22,8,0,0,Math.PI*2);X.fill();
+  X.fillStyle=K.gD;X.fillRect(-18,16+b,36,8);X.fillStyle=K.am;X.fillRect(-8,2+b,16,20);
+  X.fillStyle='#5d4037';X.fillRect(-26,-40+b,52,42);X.fillStyle='#3e2723';X.fillRect(-21,-36+b,42,34);
+  var sg=X.createLinearGradient(0,-36+b,0,-2+b);sg.addColorStop(0,'rgba(218,165,32,0.7)');sg.addColorStop(1,'rgba(218,165,32,0.2)');
+  X.fillStyle=sg;X.fillRect(-21,-36+b,42,34);
+  X.fillStyle='#fff';X.beginPath();X.arc(4,-22+b,5.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(-7,-22+b,5.5,0,Math.PI*2);X.fill();
+  X.fillStyle='#3e2723';X.beginPath();X.arc(4.5,-22+b,2.5,0,Math.PI*2);X.fill();X.beginPath();X.arc(-6.5,-22+b,2.5,0,Math.PI*2);X.fill();
+  X.strokeStyle=K.gn;X.lineWidth=2.5;X.beginPath();X.arc(0,-14+b,7.5,0.1*Math.PI,0.9*Math.PI);X.stroke();
+  X.fillStyle=K.am;X.fillRect(-15,26+b,30,10);
+  X.fillStyle=K.gD;X.beginPath();X.arc(-17,33+b,6,0,Math.PI*2);X.fill();X.beginPath();X.arc(17,33+b,6,0,Math.PI*2);X.fill();
   X.restore();
  },
 
